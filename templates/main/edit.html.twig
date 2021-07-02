@@ -1,0 +1,27 @@
+{% extends 'theme.html.twig' %}
+ {% block central %}
+      
+            <div class="row">
+                <!-- 100% 12 colonnes -->
+                
+                <div class="offset-3 col-6">
+                    <br>
+                    <h3>Modifier une personne</h3>
+                     <!-- <form action="" method="">  -->
+                        {{ form_start(formPersonne) }}
+                    <div class="row">
+                       
+                      {{ form_widget(formPersonne) }}
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-primary"  >
+                        <i class="fas fa-edit"></i>
+                    </button>
+                        </div>
+                        
+                        
+                    </div>
+                     {{ form_end(formPersonne) }}
+                       <!-- </form>  -->
+  
+                </div>
+   {% endblock central %}

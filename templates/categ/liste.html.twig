@@ -1,0 +1,61 @@
+{% extends 'theme.html.twig' %}
+ {% block central %}
+      
+            <div class="row">
+                <!-- 100% 12 colonnes -->
+                
+                <div class="offset-3 col-6">
+                    <br>
+                    <h3>Liste de catégories</h3>
+                    
+                     <!-- <form action="" method="">  -->
+                        {{ form_start(formCateg) }}
+                    <div class="row">
+                       
+                        <div class="col-10">
+                             {{ form_widget(formCateg.title) }}
+                        </div>
+                        
+
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-success"  >
+                        <i class="fas fa-plus"></i>
+                    </button>
+                        </div>
+                       
+                        
+                    </div>
+                     {{ form_end(formCateg) }}
+                       <!-- </form>  -->
+                      
+                    <table class="table mt-5 table-striped">
+                    <thead>
+                        <tr>
+                            <th>Catégorie</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for categ in categs %}
+                        <tr>
+                            <td>{{ categ.title }}</td>
+                            
+                            
+                           
+                            <td>
+                                <a 
+                                href="{{  path('categ_edit', { 'id': categ.id} ) }}" 
+                                class="btn btn-primary">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </td>
+                            
+                        </tr>
+                       {% endfor %}
+                    
+                    </tbody>
+                </table>
+
+
+                </div>
+   {% endblock central %}

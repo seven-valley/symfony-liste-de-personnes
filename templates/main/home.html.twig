@@ -1,0 +1,94 @@
+{% extends 'theme.html.twig' %}
+ {% block central %}
+      
+            <div class="row">
+                <!-- 100% 12 colonnes -->
+                
+                <div class="offset-3 col-6">
+                    <br>
+                    <h3>Liste de personnes</h3>
+                     <!-- <form action="" method="">  -->
+                        {{ form_start(formPersonne) }}
+                    <div class="row">
+                       
+                        <div class="col-3">
+                             {{ form_widget(formPersonne.prenom) }}
+                        </div>
+                        <div class="col-3">
+                             {{ form_widget(formPersonne.nom) }}
+                        </div>
+                         <div class="col-2">
+                             {{ form_widget(formPersonne.categ) }}
+                        </div>
+
+                        <div class="col-1">
+                            <button type="submit" class="btn btn-success"  >
+                        <i class="fas fa-plus"></i>
+                    </button>
+                        </div>
+                       
+                        
+                    </div>
+                     {{ form_end(formPersonne) }}
+                       <!-- </form>  -->
+                    <table class="table mt-5 table-striped">
+                    <thead>
+                        <tr>
+                            <th>Prénom</th>
+                            <th>Nom</th>
+                            <th>Type</th>
+                            
+                            <th colspan="4">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in personnes%}
+                        <tr
+                        {% if p.venir == false %}
+                        class="table-danger"
+                        {% endif %}
+                        >
+                            <td>{{ p.prenom }}</td>
+                            <td>{{ p.nom }}</td>
+                            <td>{{ p.categ.title }}</td>
+                            
+                            <td>
+                                <a
+                                    onclick="return confirm('Voulez vous supprimer ?')" 
+                                href="{{ path('personne_delete',{'id': p.id} ) }}" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a 
+                                href="{{  path('personne_edit', { 'id': p.id} ) }}" 
+                                class="btn btn-primary">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </td>
+                            <td>
+                                 {% if p.venir %}
+                                <a 
+                                class="btn btn-danger"
+                                href="{{ path('personne_modify',{'id': p.id} ) }}">
+                                    <i class="fa fa-minus"></i>
+                                </a>
+                                {% else %}
+                                 <a 
+                                class="btn btn-success"
+                                href="{{ path('personne_modify',{'id': p.id} ) }} ">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                                {% endif %}
+                           
+                               
+                            </td>
+                        </tr>
+                       {% endfor %}
+                    
+                    </tbody>
+                </table>
+
+
+                </div>
+   {% endblock central %}
